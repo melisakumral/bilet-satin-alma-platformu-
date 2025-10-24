@@ -1,47 +1,99 @@
-# Bilet Satın Alma Platformu
+🚌 Bilet Satın Alma Platformu
 
-Bu proje, kullanıcıların otobüs seferleri arasında arama yapabildiği, koltuk seçimiyle bilet satın alabildiği bir web platformudur.
+Bu proje, kullanıcıların otobüs seferleri arasında arama yapabildiği, koltuk seçimi yaparak bilet satın alabildiği ve geçmiş biletlerini görüntüleyebildiği bir web platformudur.
 
-## Proje Teknolojileri
+🛠️ Kullanılan Teknolojiler
 
-* **Backend:** PHP (PDO ile veritabanı bağlantısı)
-* **Veritabanı:** SQLite
-* **Paketleme ve Dağıtım:** Docker (Container yapısı)
+Backend: PHP (PDO ile veritabanı bağlantısı)
 
-## Projenin Amacı
+Veritabanı: SQLite
 
-Bu platformun temel amacı, kullanıcılara aşağıdaki imkanları sunmaktır:
+PDF İşlemleri: FPDF (bilet çıktısı oluşturmak için)
 
-1.  Üye olup giriş yaptıktan sonra otobüs bileti satın alma.
-2.  Mevcut kullanıcı bakiyesini görüntüleme.
-3.  Satın alma sırasında kupon kodu kullanarak indirim uygulama.
-4.  Daha önce satın alınmış olan biletleri listeleyebilme.
+Paketleme ve Dağıtım: Docker (Container yapısı)
 
-## Temel Özellikler
+🎯 Projenin Amacı
 
-Platform aşağıdaki temel işlevleri sunmaktadır:
+Bu platformun temel amacı, kullanıcılara aşağıdaki işlemleri kolayca yapabilme imkânı sunmaktır:
 
-* **Sefer Arama:** Kalkış noktası, varış noktası ve tarih kriterlerine göre sefer arama yeteneği.
-* **Koltuk Seçimi:** Otobüsün tekli ve ikili koltuk düzenine uygun görsel koltuk seçimi.
-* **Bakiye Kontrolü:** Kullanıcının mevcut bakiyesini kontrol etme ve satın alma işleminde kullanma.
-* **İndirim Kuponu:** Geçerli kupon kodları ile bilet fiyatına indirim uygulama desteği.
-* **Bilet Listeleme:** Kullanıcıya ait satın alınmış tüm biletlerin listelenmesi.
-* **Kullanıcı Yönetimi:** Güvenli kullanıcı girişi (login) ve kayıt (register) sistemi.
+Üye olup giriş yaptıktan sonra otobüs bileti satın alma
 
-## Kurulum ve Çalıştırma
+Mevcut kullanıcı bakiyesini görüntüleme
 
-Bu projenin bir Docker container yapısıyla paketlendiği varsayılmıştır. Projeyi çalıştırmak için temel adımlar şunlardır:
+Satın alma sırasında kupon kodu kullanarak indirim uygulama
 
-1.  Proje dosyalarını yerel makinenize indirin.
-2.  Sisteminize Docker ve Docker Compose'un kurulu olduğundan emin olun.
-3.  Proje ana dizininde aşağıdaki komutu çalıştırarak Docker container'larını oluşturun ve başlatın:
+Daha önce satın alınmış olan biletleri listeleme ve PDF olarak indirme
 
-    ```bash
-    docker-compose up -d --build
-    ```
+🚍 Temel Özellikler
+Özellik	Açıklama
+Sefer Arama	Kalkış, varış ve tarih bilgisine göre uygun seferlerin listelenmesi
+Koltuk Seçimi	Otobüsün tekli/ikili koltuk düzenine göre görsel koltuk seçimi
+Bakiye Kontrolü	Kullanıcının hesabındaki mevcut bakiyeyi kontrol etme
+İndirim Kuponu	Geçerli kupon kodlarıyla bilet fiyatına indirim uygulama
+Bilet Listeleme	Kullanıcının satın aldığı biletleri listeleme
+PDF Oluşturma (FPDF)	Satın alınan biletin PDF çıktısını oluşturma
+Kullanıcı Yönetimi	Güvenli giriş (login) ve kayıt (register) sistemi
+⚙️ Kurulum ve Çalıştırma
 
-4.  Container'lar başlatıldıktan sonra tarayıcınızdan platforma erişim sağlayabilirsiniz (Genellikle `http://localhost:[PortNumarası]` üzerinden). Kullanılan port numarası `docker-compose.yml` dosyasında belirtilmiştir.
+Bu proje bir Docker container yapısıyla paketlenmiştir.
+Projeyi çalıştırmak için şu adımları izleyin 👇
 
-## Veritabanı Yapısı
+Proje dosyalarını yerel makinenize indirin veya klonlayın:
 
-Proje, SQLite veritabanını kullanmaktadır. PDO bağlantısı ile işlemler güvenli bir şekilde gerçekleştirilmektedir. Veritabanı şemasında kullanıcılar, seferler, biletler ve kuponlar gibi temel tablolar yer almaktadır.
+git clone https://github.com/melisakumral/bilet-satin-alma.git
+cd bilet-satin-alma
+
+
+Gerekli bağımlılıkları yükleyin
+(Bu işlem vendor klasörünü otomatik olarak oluşturur.)
+
+composer install
+
+
+Docker’ın kurulu olduğundan emin olun.
+Ardından container’ları oluşturmak için:
+
+docker-compose up -d --build
+
+
+Tarayıcıdan erişim sağlayın:
+
+http://localhost:[PortNumarası]
+
+
+Port numarası docker-compose.yml dosyasında belirtilmiştir.
+
+🗄️ Veritabanı Yapısı
+
+Proje, SQLite veritabanı kullanmaktadır.
+PDO bağlantısı ile güvenli veri işlemleri yapılır.
+
+Veritabanı dosyası: storage/bilet_platformu.sqlite
+
+Temel tablolar:
+
+users → Kullanıcı bilgileri
+
+trips → Sefer bilgileri
+
+tickets → Satın alınan biletler
+
+coupons → İndirim kuponları
+
+💡 Not: storage klasörü GitHub deposuna dahil edilmemiştir.
+Gerekirse örnek bir veritabanı dosyası (bilet_platformu.sqlite) manuel olarak eklenebilir.
+
+📦 Vendor Klasörü Hakkında
+
+vendor klasörü, Composer tarafından otomatik oluşturulan kütüphaneleri içerir.
+Bu klasör GitHub’a yüklenmemiştir çünkü herkes şu komutla kendinde oluşturabilir:
+
+composer install
+
+
+Bu komut, composer.json ve composer.lock dosyalarına göre tüm bağımlılıkları yükler.
+
+🧾 Örnek PDF Oluşturma (FPDF)
+
+Projede, kullanıcıların satın aldıkları biletlerin çıktısını alabilmesi için FPDF kütüphanesi kullanılmaktadır.
+Örnek PDF dosyası oluşturmak için proje içerisinde test_pdf.php dosyası kullanılabilir.
